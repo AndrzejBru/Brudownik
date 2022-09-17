@@ -24,6 +24,33 @@ c.execute("""CREATE TABLE addresses (
         data_oddania integer,
         data_zwrotu integer
         )""")
+
+# Create Submit Function For database
+def submit():
+        conn = sqlite3.connect('ubrania.db')
+        c = conn.cursor
+
+        # Insret Into Table
+
+        c.execute("INSERT INTO addresses VALUES (:nuemr, :ubranie, :nuemr_ubr")
+
+        # Comit Changers
+        
+        conn.commit()
+        
+        # Close Connection
+        
+        conn.close()
+        
+        # Clean Wiget
+
+        numer.delete(0, END)
+        ubranie.delete(0, END)
+        numer_ubr.delete(0, END)
+        data_w.delete(0, END)
+        data_od.delete(0, END)
+        data_zwr.delete(0, END)
+
 numer = Entry(root, width=30)
 numer.grid(row=0, column=1, padx=20)
 
@@ -63,3 +90,12 @@ data_zwr_label = Label(root, text='Data zwrotu z pralni')
 data_zwr_label.grid(row=5, column=0)
 
 # Create Submit Butto
+
+submit_btn = Button(root, text="Dodaj ubranie", command=submit)
+submit_btn.grid(row=6, column=0, columnspan=2, pady=10, padx=10, ipadx=100)
+
+
+# Commit Changes
+conn.commit()
+# Run App
+root.mainloop()
