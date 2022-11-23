@@ -1,5 +1,5 @@
 from tkinter import *
-from PIL import ImageTK, Image
+#from PIL import ImageTK, Image
 import sqlite3
 
 root = Tk()
@@ -16,7 +16,7 @@ c = conn.cursor()
 
 # Create table
 
-c.execute("""CREATE TABLE addresses (
+c.execute("""CREATE TABLE IF NOT EXISTS addresses (
         id integer,
         typ_ubrania text,
         numer_ubrania integer,
