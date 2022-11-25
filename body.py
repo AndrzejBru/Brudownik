@@ -71,6 +71,8 @@ def View():
 
         c.close()
 
+# Możliwe błędne działanie wyświetlania tabeli DO SPRAWDZENIA
+
 numer = Entry(root, width=30)
 numer.grid(row=0, column=1, padx=20)
 
