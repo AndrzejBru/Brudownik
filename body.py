@@ -51,6 +51,26 @@ def submit():
         data_od.delete(0, END)
         data_zwr.delete(0, END)
 
+# Create View function For database
+
+def View():
+
+        conn = sqlite3.connect('ubrania.db')
+        
+        c = conn.cursor
+
+        c.execute("SELECT * FROM ubrania.db")
+
+        rows = c.fetchall()    
+
+        for row in rows:
+
+                print(row) 
+
+                tree.insert("", tk.END, values=row)        
+
+        c.close()
+
 numer = Entry(root, width=30)
 numer.grid(row=0, column=1, padx=20)
 
@@ -94,6 +114,11 @@ data_zwr_label.grid(row=5, column=0)
 submit_btn = Button(root, text="Dodaj ubranie", command=submit)
 submit_btn.grid(row=6, column=0, columnspan=2, pady=10, padx=10, ipadx=100)
 
+# Create View Butto
+
+view_btn = tk.Button(text="Pokaż ubrnia", command=View)
+
+view_btn.pack(row=7, column=0, columnspan=2, pady=10, padx=10, ipadx=100)
 
 # Commit Changes
 conn.commit()
