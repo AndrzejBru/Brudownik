@@ -32,7 +32,15 @@ def submit():
 
         # Insret Into Table
 
-        c.execute("INSERT INTO addresses VALUES (:nuemr, :ubranie, :nuemr_ubr")
+        c.execute("INSERT INTO addresses VALUES (:numer, :ubranie, :nuemr_ubr, :data_w, :data_od, :data_zwr)",
+                 {
+                        'numer': numer.get(),
+                        'ubranie': ubranie.get(),
+                        'nuemr_ubr': nuemr_ubr.get(),
+                        'data_w': data_w.get(),
+                        'data_od': data_od.get(),
+                        'data_zwr': data_zwr.get()
+                 })
 
         # Comit Changers
         
