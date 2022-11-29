@@ -4,7 +4,7 @@ import sqlite3
 
 root = Tk()
 root.title('Brudownik')
-root.geometry('800x400')
+root.geometry('400x800')
 
 # Database
 
@@ -28,7 +28,7 @@ c.execute("""CREATE TABLE IF NOT EXISTS addresses (
 # Create Submit Function For database
 def submit():
         conn = sqlite3.connect('ubrania.db')
-        c = conn.cursor
+        c = conn.cursor()
 
         # Insret Into Table
 
@@ -65,19 +65,21 @@ def View():
 
         conn = sqlite3.connect('ubrania.db')
         
-        c = conn.cursor
+        c = conn.cursor()
 
-        c.execute("SELECT * FROM ubrania.db")
+        c.execute("SELECT * FROM addresses")
 
-        rows = c.fetchall()    
+        records = c.fetchall()
+        
+        print_records = ''
+        for record in records:
+                print_records += str(record) + str(record[5]) +"\n"
 
-        for row in rows:
+        view_label = Label(root, text=print_records)
+        view_label.grid(row=8, column=0, columnspan=2)
+        conn.commit()
 
-                print(row) 
-
-                tree.insert("", Tk.END, values=row)        
-
-        c.close()
+        conn.close()
 
 # Możliwe błędne działanie wyświetlania tabeli DO SPRAWDZENIA
 
