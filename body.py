@@ -126,9 +126,8 @@ submit_btn.grid(row=6, column=0, columnspan=2, pady=10, padx=10, ipadx=100)
 
 # Create View Butto
 
-view_btn = Tk.Button(text="Pokaż ubrnia", command=View)
-
-view_btn.pack(row=7, column=0, columnspan=2, pady=10, padx=10, ipadx=100)
+view_btn = Button(text="Pokaż ubrnia", command=View)
+view_btn.grid(row=7, column=0, columnspan=2, pady=10, padx=10, ipadx=100)
 
 # Commit Changes
 conn.commit()
