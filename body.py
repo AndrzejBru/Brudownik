@@ -36,7 +36,7 @@ def submit():
                  {
                         'numer': numer.get(),
                         'ubranie': ubranie.get(),
-                        'nuemr_ubr': nuemr_ubr.get(),
+                        'nuemr_ubr': numer_ubr.get(),
                         'data_w': data_w.get(),
                         'data_od': data_od.get(),
                         'data_zwr': data_zwr.get()
@@ -75,7 +75,7 @@ def View():
 
                 print(row) 
 
-                tree.insert("", tk.END, values=row)        
+                tree.insert("", Tk.END, values=row)        
 
         c.close()
 
@@ -126,7 +126,7 @@ submit_btn.grid(row=6, column=0, columnspan=2, pady=10, padx=10, ipadx=100)
 
 # Create View Butto
 
-view_btn = tk.Button(text="Pokaż ubrnia", command=View)
+view_btn = Tk.Button(text="Pokaż ubrnia", command=View)
 
 view_btn.pack(row=7, column=0, columnspan=2, pady=10, padx=10, ipadx=100)
 
