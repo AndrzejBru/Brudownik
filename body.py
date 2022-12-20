@@ -1,11 +1,15 @@
+# Podpowiedz https://www.youtube.com/watch?v=8y3JHCnVPMw
+
+
 from tkinter import *
+from tkinter import ttk
 import tkinter.messagebox
 #from PIL import ImageTK, Image
 import sqlite3
 
 root = Tk()
 root.title('Brudownik')
-root.geometry('800x800')
+root.geometry('850x550')
 
 # Database
 
@@ -31,20 +35,20 @@ c.execute("""CREATE TABLE IF NOT EXISTS addresses (
 MainFrame = Frame(root, bg ="cadet blue")
 MainFrame.grid()
 
-TitFrame = Frame (MainFrame, bd=2, padx=54, pady=8, bg="Ghost White", relief=RIDGE )
+TitFrame = Frame (MainFrame, bd=2, padx=60, pady=8, bg="Ghost White", relief=RIDGE )
 TitFrame.pack(side=TOP)
 
 lblTit = Label(TitFrame, font=('arial', 40, 'bold'), text="Program do ubrań", bg="Ghost White")
 lblTit.grid()
 
-Data = Frame(MainFrame, bd=1, width=700, height=400, padx=20, pady=20, relief=RIDGE, bg="cadet blue")
-Data.pack(side=BOTTOM)
+Data = Frame(MainFrame, bd=1, width=700, height=400, padx=20, pady=20, relief=RIDGE, bg="red")
+Data.pack(side=LEFT)
 
-DataFrame = Frame(Data, bd=1, width=300, height=400, padx=20, pady=20, relief=RIDGE, bg="cadet blue")
+DataFrame = Frame(Data, bd=1, width=300, height=400, padx=20, pady=20, relief=RIDGE, bg="blue")
 DataFrame.pack(side=LEFT)
 
 DataView = Frame(Data,  bd=1, width=400, height=400, padx=20, pady=20, relief=RIDGE, bg="cadet blue")
-DataFrame.pack(side=RIGHT)
+DataView.pack(side=RIGHT)
 
 # Create Submit Function For database
 def submit():
@@ -94,7 +98,8 @@ def View():
         print(records)
         print_records = ''
         for record in records:
-                print_records += str(record) + str(record[5]) +"\n"
+                #print_records += str(record) + str(record[5]) +"\n"
+                tree.insert('', Tk.END, values=record)
 
         view_label = Label(DataView, text=print_records)
         view_label.grid(row=8, columnspan=2, column=0)
@@ -151,9 +156,17 @@ data_zwr_label.grid(row=5, column=0)
 #scrollbar.grid(row=0, column=3, sticky='ns')
 
 #studentlist = Listbox(DataFrameRIGHT, width=41, height=16, font=('arial', 12, 'bold'), yscrollcommand=scrollbar.set)
-studentlist = Listbox(DataView, width=41, height=20, font=('arial', 12, 'bold'))
-studentlist.grid(row=0, column=4)
+#studentlist = Listbox(DataView, width=41, height=20, font=('arial', 12, 'bold'), Text="HELLO")
+#studentlist.grid(row=0, column=4)
 #scrollbar.config(command= studentlist.yview)
+columns = ('id', 'Typ ubrania', 'Numer ubrania', 'Data wydania ubrania', 'Data oddania do prania', 'Data zwrotu z pralni')
+tree = ttk.Treeview(DataView, columns=columns, show='headings')
+tree.heading('id', text='id')
+tree.heading('Typ ubrania', text='Typ ubrania')
+tree.heading('Numer ubrania', text='Numer ubrania')
+tree.heading('Data wydania ubrania', text='Data wydania ubrania')
+tree.heading('Data oddania do prania', text='Data oddania do prania')
+tree.heading('Data zwrotu z pralni', text='Data zwrotu z pralni')
 
 
 # Create Submit Butto
